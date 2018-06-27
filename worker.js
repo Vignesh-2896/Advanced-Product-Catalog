@@ -58,16 +58,19 @@ function similar_type(parameter_id)										//Function to fetch records of simi
 	var promise =  new Promise(function(resolve,reject)
 	{
 		var i = 1;
-		while(i <= 100)
+		setTimeout(function()
 		{
-			if(parameter_id == document.getElementById("type_"+i).innerHTML )
-					similar_array.push(i);							//Records required are pushed onto an array
-			i++;	
-		}
-		if(similar_array.length > 0)
-			resolve(similar_array);
-		else
-			reject("No Products found in given Type");
+			while(i <= 100)
+			{
+				if(parameter_id == document.getElementById("type_"+i).innerHTML )
+						similar_array.push(i);							//Records required are pushed onto an array
+				i++;	
+			}
+			if(similar_array.length > 0)
+				resolve(similar_array);
+			else
+				reject("No Products found in given Type");
+		},1000);
 	});
 	promise.then(function(result)
 	{
@@ -130,16 +133,19 @@ function similar_price(parameter_id)								//Function to search for Similar Pro
 	var promise =  new Promise(function(resolve,reject)
 	{
 		var i = 1;
-		while(i <= 100)
+		setTimeout(function()
 		{
-			if(Math.abs(parameter_id - document.getElementById("price_"+i).innerHTML) <= 50)		//Condition for the Product to be chosen
-				similar_array.push(i);
-			i++;	
-		}
-		if(similar_array.length > 0)
-			resolve(similar_array);
-		else
-			reject("There are no Products in the given Price Range");
+			while(i <= 100)
+			{
+				if(Math.abs(parameter_id - document.getElementById("price_"+i).innerHTML) <= 50)		//Condition for the Product to be chosen
+					similar_array.push(i);
+				i++;	
+			}
+			if(similar_array.length > 0)
+				resolve(similar_array);
+			else
+				reject("There are no Products in the given Price Range");
+		},1000);
 	});
 	promise.then(function(result)
 	{
